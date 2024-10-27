@@ -1,4 +1,4 @@
-import { requireUser } from "@/libs/hooks";
+import { requireUser } from "@/lib/hooks";
 
 const DashboardPage = async () => {
   const session = await requireUser();

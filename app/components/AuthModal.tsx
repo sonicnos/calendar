@@ -3,7 +3,12 @@ import { DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import Logo from "@/public/logo.png";
 import Image from "next/image";
-import { signIn } from "@/libs/auth";
+import { signIn } from "@/lib/auth";
+import {
+  AuthButton,
+  GithubAuthButton,
+  GoogleAuthButton,
+} from "./SubmitButtons";
 
 const AuthModal = () => {
   return (
@@ -26,9 +31,20 @@ const AuthModal = () => {
             }}
             className="w-full"
           >
-            <Button className="w-full">Sign in with Google</Button>
+            {/* <GoogleAuthButton /> */}
+            <AuthButton provider="Google" />
           </form>
-          <Button>Sign in with Github</Button>
+          {/* <GithubAuthButton /> */}
+          <form
+            action={async () => {
+              "use server";
+              await signIn("github");
+            }}
+            className="w-full"
+          >
+            {/* <GoogleAuthButton /> */}
+            <AuthButton provider="Github" />
+          </form>
         </div>
       </DialogContent>
     </Dialog>
