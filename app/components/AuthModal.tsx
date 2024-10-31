@@ -4,11 +4,7 @@ import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import Logo from "@/public/logo.png";
 import Image from "next/image";
 import { signIn } from "@/lib/auth";
-import {
-  AuthButton,
-  GithubAuthButton,
-  GoogleAuthButton,
-} from "./SubmitButtons";
+import { AuthButton } from "./SubmitButtons";
 
 const AuthModal = () => {
   return (
@@ -39,6 +35,7 @@ const AuthModal = () => {
             action={async () => {
               "use server";
               await signIn("github");
+              console.log(signIn("github"));
             }}
             className="w-full"
           >
