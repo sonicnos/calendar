@@ -7,6 +7,44 @@ import GoogleLogo from "@/public/google.svg";
 import GithubLogo from "@/public/github.svg";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface iAppProps {
+  text: string;
+  variant?:
+    | "default"
+    | "ghost"
+    | "secondary"
+    | "outline"
+    | "destructive"
+    | "default"
+    | null
+    | undefined;
+
+  className?: string;
+}
+
+export function SubmitButton({ text, variant, className }: iAppProps) {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button disabled variant="outline">
+          <Loader2 className="size-4 animate-spin mr-2" />
+        </Button>
+      ) : (
+        <Button
+          type="submit"
+          variant={variant}
+          className={cn("w-fit", className)}
+        >
+          {text}
+        </Button>
+      )}
+    </>
+  );
+}
 
 export function GoogleAuthButton() {
   const { pending } = useFormStatus();
@@ -34,7 +72,7 @@ export function GithubAuthButton() {
     <>
       {pending ? (
         <Button disabled variant="outline" className="w-full">
-          <Loader2 className="size-4 animate-spin mr-2" />
+          <Loader2 className="size-4 animate-spin mr-2" /> Please Wait
         </Button>
       ) : (
         <Button variant="outline" className="w-full">
