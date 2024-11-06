@@ -3,12 +3,13 @@
 import prisma from "@/lib/db";
 import { requireUser } from "@/lib/hooks";
 import { parseWithZod } from "@conform-to/zod";
-import { onboardingSchema, onboardingSchemaValidation } from "@/lib/zodSchemas";
+import { onboardingSchemaValidation } from "@/lib/zodSchemas";
+import { redirect } from "next/navigation";
 
 export async function OnboardingAction(prevState: any, formData: FormData) {
   const session = await requireUser();
 
-  const submission = parseWithZod(formData, {
+  const submission = await parseWithZod(formData, {
     schema: onboardingSchemaValidation({
       async isUsernameUnique() {
         const existingUsername = await prisma.user.findUnique({
@@ -37,4 +38,6 @@ export async function OnboardingAction(prevState: any, formData: FormData) {
       name: submission.value.fullName,
     },
   });
+
+  return redirect("/dashboard");
 }
