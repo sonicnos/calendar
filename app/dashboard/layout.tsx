@@ -27,11 +27,16 @@ async function getData(userId: string) {
     },
     select: {
       username: true,
+      grantId: true,
     },
   });
 
   if (!data?.username) {
     return redirect("/onboarding");
+  }
+
+  if (!data.grantId) {
+    redirect("/onboarding/grant-id");
   }
 
   return data;
@@ -45,6 +50,7 @@ export default async function DashboardLayout({
   const session = await requireUser();
 
   const data = await getData(session.user?.id as string);
+  console.log(session?.user?.image);
 
   return (
     <>
