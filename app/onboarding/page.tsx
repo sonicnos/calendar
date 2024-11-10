@@ -13,7 +13,7 @@ import { useFormState } from "react-dom";
 import { OnboardingAction } from "../actions/actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { onboardingSchema } from "@/lib/zodSchemas";
+import { onboardingSchema } from "@/app/lib/zodSchemas";
 import { useState } from "react";
 import { SubmitButton } from "../components/SubmitButtons";
 

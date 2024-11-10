@@ -16,9 +16,11 @@ import { useFormState } from "react-dom";
 import { SettingsAction } from "../actions/actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { settingsSchema } from "@/lib/zodSchemas";
+import { settingsSchema } from "@/app/lib/zodSchemas";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { UploadDropzone } from "../lib/uploadthing";
+import { toast } from "sonner";
 
 interface iAppProps {
   fullName: string;
@@ -41,6 +43,10 @@ const SettingsForm = ({ email, fullName, profileImage }: iAppProps) => {
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
   });
+
+  const handleDeleteImage = () => {
+    setCurrentProfileImage("");
+  };
 
   return (
     <Card>
@@ -70,6 +76,12 @@ const SettingsForm = ({ email, fullName, profileImage }: iAppProps) => {
           </div>
           <div className="grid gap-y-5">
             <Label>Profile Image</Label>
+            <input
+              type="hidden"
+              name={fields.profileImage.name}
+              key={fields.profileImage.key}
+              value={currentProfileImage}
+            />
             {currentProfileImage ? (
               <div className="relative size-16">
                 <img
@@ -78,6 +90,8 @@ const SettingsForm = ({ email, fullName, profileImage }: iAppProps) => {
                   className="size-16 rounded-lg"
                 />
                 <Button
+                  onClick={handleDeleteImage}
+                  type="button"
                   variant="destructive"
                   className="absolute -top-3 -right-3"
                 >
@@ -85,8 +99,19 @@ const SettingsForm = ({ email, fullName, profileImage }: iAppProps) => {
                 </Button>
               </div>
             ) : (
-              <h1>no image</h1>
+              <UploadDropzone
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  setCurrentProfileImage(res[0].url);
+                  toast.success("Profile Image has been uploaded");
+                }}
+                onUploadError={(error) => {
+                  console.log("Something went wrong", error);
+                  toast.error("Something went wrong");
+                }}
+              />
             )}
+            <p className="text-red-500 text-sm">{fields.profileImage.errors}</p>
           </div>
         </CardContent>
         <CardFooter>

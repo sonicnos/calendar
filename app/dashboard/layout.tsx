@@ -14,11 +14,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOut } from "@/lib/auth";
+import { signOut } from "@/app/lib/auth";
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
-import { requireUser } from "@/lib/hooks";
-import prisma from "@/lib/db";
+import { requireUser } from "@/app/lib/hooks";
+import prisma from "@/app/lib/db";
 import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
@@ -61,7 +62,7 @@ export default async function DashboardLayout({
               <Link href="/" className="flex items-center gap-2">
                 <Image src={Logo} alt="logo" className="size-6" />
                 <p className="text-xl font-bold">
-                  Loukas <span className="text-primary">calendar</span>
+                  Loukas <span className="text-primary">Calendar</span>
                 </p>
               </Link>
             </div>
@@ -134,6 +135,7 @@ export default async function DashboardLayout({
           </main>
         </div>
       </div>
+      <Toaster richColors closeButton />
     </>
   );
 }

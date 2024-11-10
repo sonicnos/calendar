@@ -3,7 +3,7 @@ import { DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import Logo from "@/public/logo.png";
 import Image from "next/image";
-import { signIn } from "@/lib/auth";
+import { signIn } from "@/app/lib/auth";
 import { AuthButton } from "./SubmitButtons";
 
 const AuthModal = () => {

@@ -1,6 +1,6 @@
 import SettingsForm from "@/app/components/SettingsForm";
-import prisma from "@/lib/db";
-import { requireUser } from "@/lib/hooks";
+import prisma from "@/app/lib/db";
+import { requireUser } from "@/app/lib/hooks";
 import { notFound } from "next/navigation";
 
 async function getData(id: string) {

@@ -1,9 +1,12 @@
 "use server";
 
-import prisma from "@/lib/db";
-import { requireUser } from "@/lib/hooks";
+import prisma from "@/app/lib/db";
+import { requireUser } from "@/app/lib/hooks";
 import { parseWithZod } from "@conform-to/zod";
-import { onboardingSchemaValidation, settingsSchema } from "@/lib/zodSchemas";
+import {
+  onboardingSchemaValidation,
+  settingsSchema,
+} from "@/app/lib/zodSchemas";
 import { redirect } from "next/navigation";
 
 export async function OnboardingAction(prevState: any, formData: FormData) {

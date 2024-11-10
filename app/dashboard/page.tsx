@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { signOut } from "@/lib/auth";
-import { requireUser } from "@/lib/hooks";
+import { signOut } from "@/app/lib/auth";
+import { requireUser } from "@/app/lib/hooks";
 
 const DashboardPage = async () => {
   const session = await requireUser();

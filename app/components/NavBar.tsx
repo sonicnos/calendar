@@ -9,7 +9,7 @@ const NavBar = () => {
       <Link href={"/"} className="flex items-center gap-2">
         <Image src={Logo} alt="logo" className="size-10 " />
         <h4 className="text-3xl font-semibold">
-          Loukas <span className="text-primary">calendar</span>
+          Loukas <span className="text-primary">Calendar</span>
         </h4>
       </Link>
 
