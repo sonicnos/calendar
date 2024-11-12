@@ -33,8 +33,8 @@ export const dashboardLinks: iAppProps[] = [
   },
   {
     id: 2,
-    name: "Avalability",
-    href: "/dashboard/avalability",
+    name: "Availability",
+    href: "/dashboard/availability",
     icon: CalendarCheck,
   },
   {

@@ -26,8 +26,8 @@ model User {
   username      String?        @unique
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  Availability  Availability[]
-  EventType     EventType[]
+  availability  Availability[]
+  eventType     EventType[]
 }
 
 model Account {
