@@ -17,7 +17,7 @@ import {
 import { signOut } from "@/app/lib/auth";
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
 import { requireUser } from "@/app/lib/hooks";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
 import { Toaster } from "@/components/ui/sonner";
 

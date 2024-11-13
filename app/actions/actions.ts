@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { requireUser } from "@/app/lib/hooks";
 import { parseWithZod } from "@conform-to/zod";
 import {

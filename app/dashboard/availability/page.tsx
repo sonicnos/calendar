@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { requireUser } from "@/app/lib/hooks";
 import {
   Card,
@@ -7,6 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Select, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { SelectTrigger } from "@radix-ui/react-select";
 import { notFound } from "next/navigation";
 
 async function getData(userId: string) {
@@ -35,13 +38,21 @@ const AvalabilityRoute = async () => {
         </CardDescription>
       </CardHeader>
       <form>
-        <CardContent>
+        <CardContent className="flex flex-col gap-y-4">
           {data.map((item) => (
             <div
               key={item.id}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4"
             >
-              {item.day}
+              <div className="flex items-center gap-x-3">
+                <Switch defaultChecked={item.isActive} />
+                <p>{item.day}</p>
+                <Select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="From Time" />
+                  </SelectTrigger>
+                </Select>
+              </div>
             </div>
           ))}
         </CardContent>
