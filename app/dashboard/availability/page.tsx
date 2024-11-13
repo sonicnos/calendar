@@ -7,7 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Select, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectValue,
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { SelectTrigger } from "@radix-ui/react-select";
 import { notFound } from "next/navigation";
@@ -47,12 +52,15 @@ const AvalabilityRoute = async () => {
               <div className="flex items-center gap-x-3">
                 <Switch defaultChecked={item.isActive} />
                 <p>{item.day}</p>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="From Time" />
-                  </SelectTrigger>
-                </Select>
               </div>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="From Time" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup></SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
           ))}
         </CardContent>
