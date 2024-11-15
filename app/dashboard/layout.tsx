@@ -116,15 +116,12 @@ export default async function DashboardLayout({
                     <Link href="/dashboard/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <form
-                      className="w-full"
-                      action={async () => {
+  
+                      <button className="w-full text-left" onClick={async () => {
                         "use server";
                         await signOut();
-                      }}
-                    >
-                      <button className="w-full text-left">Log out</button>
-                    </form>
+                      }}>Log out</button>
+
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

@@ -3,6 +3,7 @@ import { signOut } from "@/app/lib/auth";
 import { requireUser } from "@/app/lib/hooks";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
+import EmptyState from "../components/EmptyState";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
@@ -39,20 +40,10 @@ const DashboardPage = async () => {
   return (
     <>
       {data.eventType.length === 0 ? (
-        <p>no data</p>
+        <EmptyState title="You have no Event Type" description="You can create your first event type the button below" buttonText="Add event type" href="/dashboard/new"/>
       ) : (
         <p>hey we have events types</p>
       )}
-
-
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        <Button>sign out</Button>
-      </form>
     </>
   );
 };
